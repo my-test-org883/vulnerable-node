@@ -56,7 +56,7 @@ jobs:
           api_token: ${{ secrets.BOOST_API_TOKEN }}
           scan_timeout: 1800
         env:
-          BOOST_IMAGE_NAME: ${{ env.REGISTRY }}/${{ env.IMAGE_NAME }}:release
+          BOOST_IMAGE_NAME: ${{ env.REGISTRY }}/${{ env.IMAGE_NAME }}:main
 
       # This step generates an artifact attestation for the image, which is an unforgeable statement about where and how it was built. It increases supply chain security for people who consume the image. For more information, see "[AUTOTITLE](/actions/security-guides/using-artifact-attestations-to-establish-provenance-for-builds)."
       - name: Generate artifact attestation
