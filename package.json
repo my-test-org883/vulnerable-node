@@ -38,6 +38,7 @@
     "sequelize": "^4.13.10",
     "webpd": "^1.0.0-alpha.9",
     "winston": "^3.0.0",
-    "x-xss-protection": "^1.1.0"
+    "x-xss-protection": "^1.1.0",
+    "lodash": "4.17.20"
   }
 }
