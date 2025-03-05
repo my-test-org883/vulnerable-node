@@ -46,6 +46,16 @@ jobs:
           tags: ${{ steps.meta.outputs.tags }}
           labels: ${{ steps.meta.outputs.labels }}
 
+      - name: Set IMAGE_TAG for PR
+        if: ${{ github.event_name == 'pull_request' }}
+        run: |
+          echo "IMAGE_TAG=pr-${{ github.event.pull_request.number }}" >> $GITHUB_ENV
+
+      - name: Set IMAGE_TAG for main
+        if: ${{ github.event_name == 'push' && github.ref_name == 'main' }}
+        run: |
+          echo "IMAGE_TAG=${{ github.ref_name }}" >> $GITHUB_ENV
+
       - name: trivy-image
         uses: boostsecurityio/boostsec-scanner-github@v4
         with:
@@ -53,7 +63,7 @@ jobs:
           api_token: ${{ secrets.BOOST_API_TOKEN }}
           scan_timeout: 1800
         env:
-          BOOST_IMAGE_NAME: ${{ env.REGISTRY }}/${{ env.IMAGE_NAME }}:${{ github.ref_name }}
+          BOOST_IMAGE_NAME: ${{ env.REGISTRY }}/${{ env.IMAGE_NAME }}:${{ env.IMAGE_TAG }}
 
       - name: Generate artifact attestation
         uses: actions/attest-build-provenance@v1
