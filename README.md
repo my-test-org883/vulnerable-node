@@ -24,7 +24,7 @@ You can setup a local gitbook server to access the documentation using the follo
 cd docs/
 docker run --rm -v `pwd`:/gitbook -p 4000:4000 --name gitbook amontaigu/gitbook gitbook serve
 ```
-
+a
 ## Quick start
 
 Try DVNA using a single command with Docker. This setup uses an SQLite database instead of MySQL.
